@@ -13,7 +13,7 @@ with open("stuff/setting.json", "r") as f:
 webhook = data["webhook"]
 logging = data["enable_logging"]
 toggle_web = data["webhook_toggle"]
-image = data["change_image_path"]
+image = "image.jpg"
 toggle_log = data["save_txt"]
 
 blacklisted_agents = ["Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)"]
