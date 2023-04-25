@@ -23,7 +23,7 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
         filename = self.path[1:]
         if os.path.isfile(filename):
             self.send_response(200)
-            self.send_header('Content-type', 'image/jpeg')
+            self.send_header('Content-type', 'image/jpg')
             self.end_headers()
             with open(filename, 'rb') as f:
                 self.wfile.write(f.read())
