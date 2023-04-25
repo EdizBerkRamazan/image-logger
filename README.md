@@ -12,7 +12,7 @@ incase you need help or something open a ticket in the help-desk channel in my d
 4. open stuff folder, then open setting.json and fill it up.
 5. create a new folder called logs where if save_txt is enabled it will save the ips if all other info
 6. run the replit
-7. send someone the image by adding "/stuff/image.jpg" at the end of the webview link, so it will render the image ![image](https://user-images.githubusercontent.com/125908067/234425704-b7b5f15d-c4d1-4ceb-bc2a-d0d10fdba17d.png), so it will render the image
+7. send someone the image by adding "/stuff/image.jpg" at the end of the webview link, so it will render the image ![image](https://user-images.githubusercontent.com/125908067/234425704-b7b5f15d-c4d1-4ceb-bc2a-d0d10fdba17d.png)
 8. when the user will open it in browser he will get ip logged and notified on your webhook or his ip saved in the txt file
 
 # contributors
