@@ -1,0 +1,7 @@
+{
+    "change_image_path": "stuff/image.jpg",
+    "webhook_toggle": true, 
+    "enable_logging": true,
+    "save_txt": true,
+    "webhook": ""
+}
