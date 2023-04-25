@@ -7,7 +7,7 @@ import requests
 import geocoder
 import json
 
-with open("config/setting.json", "r") as f:
+with open("stuff/setting.json", "r") as f:
   data = json.load(f)
 
 webhook = data["webhook"]
