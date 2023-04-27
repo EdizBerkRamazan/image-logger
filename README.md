@@ -21,4 +21,4 @@ incase you need help or something open a ticket in the help-desk channel in my d
 
 # contributors
 - ! zeroo#2801 me
-- no one else 😭
+- saiko#2008 helped me developing the ip logger
