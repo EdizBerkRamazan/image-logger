@@ -1,5 +1,9 @@
 {
-    "webhook_toggle": true, 
+    "image_path": "stuff/image.jpg",
+    "gif_path": "stuff/troll.gif",
+    "troll_gif": true,
+    "webhook_toggle": true,
+    "check_vpn": true, 
     "enable_logging": true,
     "save_txt": true,
     "webhook": ""
