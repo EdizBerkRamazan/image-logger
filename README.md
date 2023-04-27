@@ -8,7 +8,7 @@ incase you need help or something open a ticket in the help-desk channel in my d
 # how to use
 1. go in https://replit.com create a account.
 2. create a new project and click on the top right corner the button that says "import from github"
-3. enter the github repo link "https://github.com/zeroo-0/image-logger" after doing so press import from github, if doesnt work download the image logger as a zip drag the files and remove .gitignore
+3. enter the github repo link https://github.com/zeroo-0/image-logger after doing so press import from github, if doesnt work download the image logger as a zip drag the files and remove .gitignore
 4. open stuff folder, then open setting.json and customize your image logger.
 5. create a new folder called logs where if save_txt is enabled it will save the ips if all other info.
 6. run the replit.
