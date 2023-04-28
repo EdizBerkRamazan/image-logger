@@ -1,5 +1,5 @@
 # image-logger
-a discord image logger that gets user ip, customizable, renders image, renders troll gif when user opens it in browser and is hosted on replit.
+a discord image logger that gets user ip, customizable, renders image, renders troll gif when user opens it in browser and is hosted on replit and other websites.
 
 # discord server
 incase you need help or something open a ticket in the help-desk channel in my discord server
